@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Question Marker</title>
+    <style>
+        .correct {
+            background-color: lightgreen;
+        }
+        .incorrect {
+            background-color: coral;
+        }
+        .feedback {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Exam Question Marker</h1>
+
+<!-- Create a container for each question -->
+<div class="question-container" id="question1">
+    <label for="answer1">Question 1: What is a WAN?</label>
+    <input type="text" id="answer1" placeholder="Type your answer here">
+    <span class="feedback" id="feedback1"></span>
+</div>
+
+<div class="question-container" id="question2">
+    <label for="answer2">Question 2: What is a LAN?</label>
+    <input type="text" id="answer2" placeholder="Type your answer here">
+    <span class="feedback" id="feedback2"></span>
+</div>
+
+<div class="question-container" id="question3">
+    <label for="answer3">Question 3: What is a WIMP?</label>
+    <input type="text" id="answer3" placeholder="Type your answer here">
+    <span class="feedback" id="feedback3"></span>
+</div>
+
+<div class="question-container" id="question4">
+    <label for="answer3">Question 4: What is a input device?</label>
+    <input type="text" id="answer4" placeholder="Type your answer here">
+    <span class="feedback" id="feedback3"></span>
+</div>
+
+<!-- Add more question containers as needed -->
+
+<button onclick="markQuestions()">Mark Questions</button>
+
+<script>
+    function markQuestions() {
+        // Define the correct answers for each question
+        var correctAnswers = [
+            'Wide area network',
+            'Local area network',
+            'Windows icons menus and pointers system',
+            'A device which gives the device data'
+            // Add more correct answers as needed for each question
+        ];
+
+        // Loop through each question container
+        document.querySelectorAll('.question-container').forEach(function (container, index) {
+            // Get the user's answer from the input field inside the question container
+            var userAnswer = container.querySelector('input').value.toLowerCase();
+
+            // Check if the user's answer is correct for the current question
+            var isCorrect = correctAnswers[index].toLowerCase() === userAnswer;
+
+            // Mark the question container based on correctness
+            if (isCorrect) {
+                container.classList.remove('incorrect');
+                container.classList.add('correct');
+                container.querySelector('.feedback').textContent = 'Correct!';
+            } else {
+                container.classList.remove('correct');
+                container.classList.add('incorrect');
+                container.querySelector('.feedback').textContent = 'Incorrect. Correct answer(s): ' + correctAnswers[index];
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
